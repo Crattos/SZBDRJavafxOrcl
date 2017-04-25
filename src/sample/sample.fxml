@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.Controller">
+   <children>
+      <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+            <Tab text="Miasta">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="miasta" editable="true" layoutX="217.0" layoutY="60.0" onKeyPressed="#modifyMiasta" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="miastoID" prefWidth="75.0" text="ID" />
+                            <TableColumn fx:id="miastoNazwa" onEditCommit="#editMiastaNazwa" prefWidth="75.0" text="MIASTO" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Druzyny">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="druzyny" editable="true" layoutX="151.0" onKeyPressed="#modifyDruzyny" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="druzynyId" prefWidth="75.0" text="ID" />
+                            <TableColumn fx:id="druzynyMiastaId" onEditCommit="#editDruzynyMiastaId" prefWidth="75.0" text="ID_MIASTA" />
+                              <TableColumn fx:id="druzynyNazwa" onEditCommit="#editDruzynyNazwa" prefWidth="75.0" text="NAZWA" />
+                              <TableColumn fx:id="druzynyPunkty" onEditCommit="#editDruzynyPunkty" prefWidth="75.0" text="PUNKTY" />
+                              <TableColumn fx:id="druzynyBramki" onEditCommit="#editDruzynyBramki" prefWidth="75.0" text="BRAMKI" />
+                              <TableColumn fx:id="druzynyIloscSpotkan" onEditCommit="#editDruzynyIloscSpotkan" prefWidth="108.0" text="ILOSC_SPOTKAN" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Piłkarze">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="pilkarze" editable="true" layoutX="180.0" layoutY="44.0" onKeyPressed="#modifyPilkarze" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="pilkarzeId" prefWidth="75.0" text="ID" />
+                            <TableColumn fx:id="pilkarzeDruzynyId" onEditCommit="#editPilkarzeDruzynyId" prefWidth="75.0" text="ID_DRUZYNY" />
+                              <TableColumn fx:id="pilkarzeImie" onEditCommit="#editPilkarzeImie" prefWidth="75.0" text="IMIE_PILKARZA" />
+                              <TableColumn fx:id="pilkarzeNazwisko" onEditCommit="#editPilkarzeNazwisko" prefWidth="75.0" text="NAZWISKO_PILKARZA" />
+                              <TableColumn fx:id="pilkarzeDataUrodzenia" onEditCommit="#editPilkarzeDataUrodzenia" prefWidth="75.0" text="WIEK_PILKARZA" />
+                              <TableColumn fx:id="pilkarzePozycja" onEditCommit="#editPilkarzePozycja" prefWidth="75.0" text="POZYCJA" />
+                              <TableColumn fx:id="pilkarzeNarodowosc" onEditCommit="#editPilkarzeNarodowosc" prefWidth="75.0" text="NARODOWOSC_PILKARZA" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Trenerzy">
+                <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <children>
+                            <TableView fx:id="trenerzy" editable="true" layoutX="180.0" layoutY="44.0" onKeyPressed="#modifyTrenerzy" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <columns>
+                                    <TableColumn fx:id="trenerzyId" prefWidth="75.0" text="ID" />
+                                    <TableColumn fx:id="trenerzyDruzynyId" onEditCommit="#editTrenerzyDruzynyId" prefWidth="75.0" text="ID_DRUZYNY" />
+                                    <TableColumn fx:id="trenerzyImie" onEditCommit="#editTrenerzyImie" prefWidth="75.0" text="IMIE_TRENERA" />
+                                    <TableColumn fx:id="trenerzyNazwisko" onEditCommit="#editTrenerzyNazwisko" prefWidth="75.0" text="NAZWISKO_TRENERA" />
+                                    <TableColumn fx:id="trenerzyDataUrodzenia" onEditCommit="#editTrenerzyDataUrodzenia" prefWidth="75.0" text="WIEK_TRENERA" />
+                                    <TableColumn fx:id="trenerzyNarodowosc" onEditCommit="#editTrenerzyNarodowosc" prefWidth="75.0" text="NARODOWOSC_TRENERA" />
+                                </columns>
+                            </TableView>
+                        </children>
+                    </AnchorPane>
+                </content>
+            </Tab>
+            <Tab text="Sędziowie">
+                <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <children>
+                            <TableView fx:id="sedziowie" editable="true" layoutX="180.0" layoutY="44.0" onKeyPressed="#modifySedziowie" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <columns>
+                                    <TableColumn fx:id="sedziowieId" prefWidth="75.0" text="ID" />
+                                    <TableColumn fx:id="sedziowieImie" onEditCommit="#editSedziowieImie" prefWidth="75.0" text="IMIE_SEDZI" />
+                                    <TableColumn fx:id="sedziowieNazwisko" onEditCommit="#editSedziowieNazwisko" prefWidth="75.0" text="NAZWISKO_SEDZI" />
+                                </columns>
+                            </TableView>
+                        </children>
+                    </AnchorPane>
+                </content>
+            </Tab>
+            <Tab text="Spotkania">
+                <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <children>
+                            <TableView fx:id="spotkania" editable="true" layoutX="180.0" layoutY="44.0" onKeyPressed="#modifySpotkania" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <columns>
+                                    <TableColumn fx:id="spotkaniaId" prefWidth="75.0" text="ID" />
+                                    <TableColumn fx:id="spotkaniaSedziaId" onEditCommit="#editSpotkaniaSedziaId" prefWidth="75.0" text="ID_SEDZI" />
+                                    <TableColumn fx:id="spotkaniaDruzynaId" onEditCommit="#editSpotkaniaDruzynaId" prefWidth="75.0" text="ID_DRUZYNY" />
+                                    <TableColumn fx:id="spotkaniaMiastaId" onEditCommit="#editSpotkaniaMiastaId" prefWidth="75.0" text="ID_MIASTA" />
+                                    <TableColumn fx:id="spotkaniaDruzyna2Id" onEditCommit="#editSpotkaniaDruzyna2Id" prefWidth="75.0" text="DRU_ID_DRUZYNY" />
+                                    <TableColumn fx:id="spotkaniaBramkiD1" onEditCommit="#editSpotkaniaBramkiD1" prefWidth="75.0" text="BRAMKI_D1" />
+                                    <TableColumn fx:id="spotkaniaBramkiD2" onEditCommit="#editSpotkaniaBramkiD2" prefWidth="75.0" text="BRAMKI_D2" />
+                                    <TableColumn fx:id="spotkaniaData" onEditCommit="#editSpotkaniaData" prefWidth="75.0" text="DATA_SPOTKANIA" />
+                                </columns>
+                            </TableView>
+                        </children>
+                    </AnchorPane>
+                </content>
+            </Tab>
+            <Tab text="Wyniki">
+                <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <children>
+                            <TableView fx:id="wyniki" editable="true" layoutX="180.0" layoutY="44.0" onKeyPressed="#modifyWyniki" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <columns>
+                                    <TableColumn fx:id="wynikiSpotkaniaId" onEditCommit="#editWynikiSpotkaniaId" prefWidth="75.0" text="ID_SPOTKANIA" />
+                                    <TableColumn fx:id="wynikiDruzynaId" onEditCommit="#editWynikiDruzynaId" prefWidth="75.0" text="ID_DRUZYNY" />
+                                    <TableColumn fx:id="wynikiPilkarzId" onEditCommit="#editWynikiPilkarzId" prefWidth="75.0" text="ID_PILKARZA" />
+                                    <TableColumn fx:id="wynikiMinuta" onEditCommit="#editWynikiMinuta" prefWidth="75.0" text="MINUTA_WYNIKU" />
+
+                                </columns>
+                            </TableView>
+                        </children>
+                    </AnchorPane>
+                </content>
+            </Tab>
+            <Tab text="Kary">
+                <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <children>
+                            <TableView fx:id="kary" editable="true" layoutX="180.0" layoutY="44.0" onKeyPressed="#modifyKary" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <columns>
+                                    <TableColumn fx:id="karySpotkaniaId" onEditCommit="#editKarySpotkaniaId" prefWidth="75.0" text="ID_SPOTKANIA" />
+                                    <TableColumn fx:id="karyDruzynaId" onEditCommit="#editKaryDruzynaId" prefWidth="75.0" text="ID_DRUZYNY" />
+                                    <TableColumn fx:id="karyPilkarzId" onEditCommit="#editKaryPilkarzId" prefWidth="75.0" text="ID_PILKARZA" />
+                                    <TableColumn fx:id="karyMinuta" onEditCommit="#editKaryMinuta" prefWidth="75.0" text="MINUTA_KARY" />
+                                    <TableColumn fx:id="karyKara" onEditCommit="#editKaryKara" prefWidth="75.0" text="KARA" />
+                                </columns>
+                            </TableView>
+                        </children>
+                    </AnchorPane>
+                </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

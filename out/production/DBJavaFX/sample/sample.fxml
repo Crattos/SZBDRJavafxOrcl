@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.Controller">
+   <children>
+      <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab text="Users">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="userTable" editable="true" layoutX="56.0" layoutY="14.0" onKeyPressed="#modifyUserRow" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="userID" prefWidth="75.0" text="ID_USER" />
+                            <TableColumn fx:id="userNick" onEditCommit="#editUserNick" prefWidth="75.0" text="NICK" />
+                              <TableColumn fx:id="userEmail" onEditCommit="#editUserEmail" prefWidth="75.0" text="EMAIL" />
+                              <TableColumn fx:id="userIsAdmin" onEditCommit="#editUserIsAdmin" prefWidth="75.0" text="ADMIN" />
+                          </columns>
+                        </TableView>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Sections">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="sectionTable" editable="true" layoutX="65.0" layoutY="14.0" onKeyPressed="#modifySectionRow" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="sectionId" prefWidth="75.0" text="ID_SECTION" />
+                            <TableColumn fx:id="sectionUserId" onEditCommit="#editSectionUserID" prefWidth="75.0" text="ID_USER" />
+                              <TableColumn fx:id="sectionTitle" onEditCommit="#editSectionTitle" prefWidth="75.0" text="TITLE" />
+                          </columns>
+                        </TableView>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Threads">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="threadTable" editable="true" layoutX="57.0" layoutY="14.0" onKeyPressed="#modifyThreadRow" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="threadID" prefWidth="75.0" text="ID_THREAD" />
+                            <TableColumn fx:id="threadSectionId" onEditCommit="#editThreadSectionId" prefWidth="75.0" text="ID_SECTION" />
+                              <TableColumn fx:id="threadUserId" onEditCommit="#editThreadUserId" prefWidth="75.0" text="ID_USER" />
+                              <TableColumn fx:id="threadTitle" onEditCommit="#editThreadTitle" prefWidth="75.0" text="TITLE" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Posts">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="postTable" editable="true" layoutX="100.0" layoutY="40.0" onKeyPressed="#modifyPostRow" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="postID" prefWidth="75.0" text="ID_POST" />
+                            <TableColumn fx:id="postThreadId" onEditCommit="#editPostThreadID" prefWidth="75.0" text="ID_THREAD" />
+                              <TableColumn fx:id="postUserID" onEditCommit="#editPostUserID" prefWidth="75.0" text="ID_USER" />
+                              <TableColumn fx:id="postContent" onEditCommit="#editPostContent" prefWidth="75.0" text="CONTENT" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
