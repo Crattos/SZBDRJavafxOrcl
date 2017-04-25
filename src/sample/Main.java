@@ -7,9 +7,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import sample.controllers.Controller;
 
-public class Main extends Application {
+public class Main  {
 
-    @Override
+    /*@Override
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader loader =  new FXMLLoader(getClass().getResource("sample.fxml"));
         Parent root = loader.load();
@@ -26,11 +26,11 @@ public class Main extends Application {
         primaryStage.show();
 
 
-    }
+    }*/
 
 
     public static void main(String[] args) {
 
-        launch(args);
+        Application.launch(DBLogin.class);
     }
 }
