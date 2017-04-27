@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.Pair;
@@ -22,6 +23,7 @@ import java.util.Optional;
 
 public class DBLogin extends Application  {
 
+
     private Dialog <Pair<String,String>> dialog;
     private ButtonType loginButtonType;
     private GridPane gridPane;
@@ -31,9 +33,11 @@ public class DBLogin extends Application  {
 
     private String username;
     private String password;
+    private Stage primaryStage;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        this.primaryStage = primaryStage;
         initComponents();
         setButtonsType();
         setLoginGridPane();
@@ -48,6 +52,8 @@ public class DBLogin extends Application  {
 
     }
 
+
+
     private void startThatProgram(Stage primaryStage) throws IOException, SQLException {
         FXMLLoader loader =  new FXMLLoader(getClass().getResource("sample.fxml"));
         Parent root = loader.load();
@@ -59,9 +65,15 @@ public class DBLogin extends Application  {
         if (controller == null) {
             System.out.println("null");
         } else {
-            controller.loadUpTheTables(connector);
+            controller.loadUpTheTables(this, connector);
         }
         primaryStage.show();
+    }
+
+    public void logout() throws IOException, SQLException {
+        primaryStage.hide();
+        showThisDialog();
+        startThatProgram(primaryStage);
 
     }
 
@@ -136,8 +148,10 @@ public class DBLogin extends Application  {
         Optional<Pair<String, String>> result = dialog.showAndWait();
 
         //Pobranie wartości
-        result.ifPresent(usernamePassword -> setData(usernamePassword.getKey(),usernamePassword.getValue()));
-
+        result.ifPresent(usernamePassword -> setData(usernamePassword.getKey(),usernamePassword.getValue())
+                );
+       if (primaryStage == null)
+           Application.launch(DBLogin.class);
     }
 
     private void setData(String username, String password) {

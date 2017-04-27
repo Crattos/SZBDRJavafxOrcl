@@ -2,16 +2,21 @@ package sample.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import javafx.util.converter.NumberStringConverter;
 import sample.Connector;
+import sample.DBLogin;
 import sample.tables.*;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -19,13 +24,9 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
 
 
+    public TabPane tabele;
     private Connector connector;
-
-
-
-
-
-
+    private DBLogin dbLogin;
 
 
     @FXML
@@ -147,7 +148,7 @@ public class Controller implements Initializable {
         karyKara            .setCellValueFactory(cellData -> cellData.getValue().karaProperty());
     }
 
-    public void loadUpTheTables(Connector connector) throws SQLException {
+    public void loadUpTheTables(DBLogin dbLogin, Connector connector) throws SQLException {
 
         miasta.setItems(connector.findAllMiasta());
         druzyny.setItems(connector.findAllDruzyny());
@@ -158,6 +159,7 @@ public class Controller implements Initializable {
         wyniki.setItems(connector.findAllWyniki());
         kary.setItems(connector.findAllKary());
         this.connector = connector;
+        this.dbLogin = dbLogin;
     }
 
 
@@ -539,6 +541,78 @@ public class Controller implements Initializable {
             connector.insertNoweMiasto();
             refresh();
         }
+    }
+
+    public void insertButton(MouseEvent mouseEvent) throws SQLException {
+        switch (tabele.getSelectionModel().getSelectedItem().getText()){
+            case "Miasta":connector.insertNoweMiasto();
+                refresh();
+                break;
+            case "Druzyny":connector.insertNowaDruzyna();
+                refresh();
+                break;
+            case "Piłkarze":connector.insertNowyPilkarz();
+                refresh();
+                break;
+            case "Trenerzy":connector.insertNowyTrener();
+                refresh();
+                break;
+            case "Sędziowie":connector.insertNowySedzia();
+                refresh();
+                break;
+            case "Spotkania":connector.insertNoweSpotkanie();
+                refresh();
+                break;
+            case "Wyniki":connector.insertNowyWynik();
+            refresh();
+                break;
+            case "Kary": connector.insertNowaKara();
+                        refresh();
+                break;
+        }
+    }
+
+    public void deleteButton(MouseEvent mouseEvent) throws SQLException {
+        switch (tabele.getSelectionModel().getSelectedItem().getText()){
+            case "Miasta":   Miasto miasto =  miasta.getSelectionModel().getTableView().getSelectionModel().getSelectedItem();
+                connector.deleteRow("MIASTA","ID_MIASTA",  miasto.getId());
+                refresh();
+                break;
+            case "Druzyny":Druzyna druzyna =  druzyny.getSelectionModel().getTableView().getSelectionModel().getSelectedItem();
+                connector.deleteRow("DRUZYNY","ID_DRUZYNY",  druzyna.getId());
+                refresh();
+                break;
+            case "Piłkarze":Pilkarz pilkarz =  pilkarze.getSelectionModel().getTableView().getSelectionModel().getSelectedItem();
+                connector.deleteRow("PILKARZE","ID_PILKARZA",  pilkarz.getId());
+                refresh();
+                break;
+            case "Trenerzy":Trener trener =  trenerzy.getSelectionModel().getTableView().getSelectionModel().getSelectedItem();
+                connector.deleteRow("TRENERZY","ID_TRENERA",  trener.getId());
+                refresh();
+                break;
+            case "Sędziowie": Sedzia sedzia =  sedziowie.getSelectionModel().getTableView().getSelectionModel().getSelectedItem();
+                connector.deleteRow("SEDZIOWIE","ID_SEDZI",  sedzia.getId());
+                refresh();
+                break;
+            case "Spotkania":Spotkanie spotkanie =  spotkania.getSelectionModel().getTableView().getSelectionModel().getSelectedItem();
+                connector.deleteRow("SPOTKANIA","ID_SPOTKANIA",  spotkanie.getId());
+                refresh();
+                break;
+            case "Wyniki":Wynik wynik =  wyniki.getSelectionModel().getTableView().getSelectionModel().getSelectedItem();
+                connector.deleteRow("WYNIK","ID_SPOTKANIA",  wynik.getIdSpotkania());
+                refresh();
+                break;
+            case "Kary":  Kara kara =  kary.getSelectionModel().getTableView().getSelectionModel().getSelectedItem();
+                connector.deleteRow("KARY","ID_SPOTKANIA",  kara.getIdSpotkania());
+                refresh();
+                break;
+        }
+    }
+
+
+    public void logoutButton(MouseEvent mouseEvent) throws IOException, SQLException {
+
+        dbLogin.logout();
     }
 }
 
